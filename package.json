@@ -1,0 +1,20 @@
+{
+  "name": "digit-lens",
+  "version": "0.0.0-spike",
+  "private": true,
+  "type": "module",
+  "description": "Spike for browser-first Sudoku board extraction and OCR.",
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "spike": "npm run spike:inhouse",
+    "spike:inhouse": "node scripts/run-spike-inhouse-ocr.mjs"
+  },
+  "dependencies": {
+    "@techstark/opencv-js": "^5.0.0-release.1",
+    "@types/node": "^26.1.0",
+    "jimp": "^1.6.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.2"
+  }
+}
