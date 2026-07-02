@@ -6,6 +6,12 @@
   "description": "Spike for browser-first Sudoku board extraction and OCR.",
   "scripts": {
     "build": "vite build",
+    "dataset:augment": "node scripts/augment-images.js",
+    "dataset:build": "node scripts/build-dataset.js",
+    "dataset:build:stage2": "node scripts/augment-images.js && node scripts/create-splits.js",
+    "dataset:download": "node scripts/download-datasets.js",
+    "dataset:organize": "node scripts/organize-images.js",
+    "dataset:split": "node scripts/create-splits.js",
     "typecheck": "tsc --noEmit",
     "spike": "npm run spike:inhouse",
     "spike:inhouse": "node scripts/run-spike-inhouse-ocr.mjs"

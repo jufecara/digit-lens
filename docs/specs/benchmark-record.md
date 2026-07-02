@@ -11,7 +11,8 @@
 5. [Decision](#decision)
 6. [Reasoning](#reasoning)
 7. [Improvement Backlog](#improvement-backlog)
-8. [Next Focus](#next-focus)
+8. [Spike Closeout](#spike-closeout)
+9. [Next Focus](#next-focus)
 
 ## Purpose
 
@@ -150,7 +151,32 @@ The ONNX path and the ensemble path are recorded as explored alternatives, not t
 - Current interpretation:
   - the main Priority 1 blocker is not only threshold detection
   - the remaining gap is still digit isolation quality inside threshold-damaged cells
-  - future rectification work should favor line-intersection or contour-geometry refinement, not direct recropping from row/column peak strength alone
+- future rectification work should favor line-intersection or contour-geometry refinement, not direct recropping from row/column peak strength alone
+
+## Spike Closeout
+
+Spike status:
+
+- complete
+
+Spike conclusion:
+
+- the in-house printed-digit OCR path is strong enough to carry forward as the approved implementation direction
+- the benchmark is good on clean and moderately difficult printed boards
+- the remaining gap is concentrated in degraded threshold-heavy and color-heavy cases, not in the overall browser-first architecture
+
+What is explicitly out of scope for spike completion:
+
+- integrating the curated dataset under `/data` into the active runtime
+- using augmentation as part of the default model path
+- reintroducing deferred filled or handwritten-candidate boards into the active baseline
+
+Post-spike handoff:
+
+- keep the current spike runtime centered on `/spikes/samples`
+- treat `/data` as prepared next-stage evaluation and future-training material
+- only start dataset-consumer integration after the project moves from spike into the next approved build phase
+- use [Dataset Next Stage](./dataset-next-stage.md) as the handoff contract for that follow-up work
 
 ## Next Focus
 

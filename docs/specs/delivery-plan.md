@@ -10,6 +10,7 @@
 4. [Decision Records](#decision-records)
 5. [Approval Model](#approval-model)
 6. [Spec Governance](#spec-governance)
+7. [Spike Exit](#spike-exit)
 
 ## Working Model
 
@@ -77,3 +78,21 @@ The initial spec set consists of:
 - Spec strictness is moderate
 - Assumptions and open questions should be tracked inside relevant sections
 - Durable benchmark decisions should be reflected in both the specs and the intake source when they change the recommended direction
+
+## Spike Exit
+
+The spike should be treated as complete when the following are true:
+
+- the in-house OCR direction is explicitly retained or rejected based on benchmark evidence
+- the benchmark record is updated with the final spike conclusion
+- the project has a documented handoff into the next stage without silently changing the active spike runtime
+
+The current project state satisfies that exit model as follows:
+
+- the in-house OCR path is retained in [Benchmark Record](./benchmark-record.md)
+- the prepared dataset under `/data` is documented as next-stage material rather than active spike input
+- augmentation is documented as a second-stage option, not part of the default spike baseline
+
+Immediate post-spike next step:
+
+- build a dedicated dataset consumer/evaluation script for `/data/metadata/dataset_index.json` and `/data/splits/*`

@@ -10,8 +10,9 @@
 4. [Proposed Output Shape](#proposed-output-shape)
 5. [Testing Strategy](#testing-strategy)
 6. [Current OCR Direction](#current-ocr-direction)
-7. [Near-Term Improvement Targets](#near-term-improvement-targets)
-8. [Fallback Strategy](#fallback-strategy)
+7. [Dataset Usage Plan](#dataset-usage-plan)
+8. [Near-Term Improvement Targets](#near-term-improvement-targets)
+9. [Fallback Strategy](#fallback-strategy)
 
 ## Architecture Direction
 
@@ -75,6 +76,15 @@ This shape is illustrative and can evolve during the spike phase.
 - The active OCR direction is the in-house classifier path documented in [Benchmark Record](./benchmark-record.md).
 - ONNX and ensemble experiments are preserved as benchmark evidence, but they are not the current implementation choice.
 - The current improvement target is preprocessing and digit isolation on degraded inputs rather than replacing the in-house classifier again.
+
+## Dataset Usage Plan
+
+- The curated dataset under `/data` is prepared for the next stage, not the current spike runtime.
+- The current spike still consumes `/spikes/samples` and fixture matrices directly.
+- The next-stage dataset consumer should read `/data/metadata/dataset_index.json` and active split membership from `/data/splits`.
+- Default next-stage usage should start with `usage === "active"` and non-augmented boards only.
+- Deferred filled or handwritten-candidate boards should remain excluded by default until explicitly reintroduced.
+- See [Dataset Next Stage](./dataset-next-stage.md) for the operational rules.
 
 ## Near-Term Improvement Targets
 

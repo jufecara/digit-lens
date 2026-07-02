@@ -6,6 +6,13 @@ Training pool: `forum-sudoku-original.jpeg`, `servo-sudoku-figure09.jpg`, `stack
 Excluded from training: `forum-sudoku-engine2.jpeg`, `pyimagesearch-thresh.png`, `stackoverflow-blue-grid.png`, `stackoverflow-newspaper-thresh.png`
 Evaluation targets: `forum-sudoku-engine2.jpeg`, `forum-sudoku-original.jpeg`, `pyimagesearch-photo.jpg`, `pyimagesearch-thresh.png`, `pyimagesearch-transform.png`, `servo-sudoku-figure09.jpg`, `stackoverflow-blue-grid.png`, `stackoverflow-newspaper-original.jpg`, `stackoverflow-newspaper-thresh.png`, `stackoverflow-newspaper-transform.png`
 
+## Closeout
+
+- Spike status: complete
+- Approved direction: continue with the in-house printed-digit OCR path
+- Current scope boundary: keep the active spike runtime on `/spikes/samples`; do not switch the runtime to `/data` yet
+- Next stage: add a dedicated dataset consumer/evaluation path for the curated dataset described in [docs/specs/dataset-next-stage.md](../../docs/specs/dataset-next-stage.md)
+
 ## Results
 ### forum-sudoku-engine2.jpeg
 
@@ -237,4 +244,3 @@ Evaluation targets: `forum-sudoku-engine2.jpeg`, `forum-sudoku-original.jpeg`, `
 - Clean-pool benchmark count: 6
 - Clean-pool cell accuracy: 99.18%
 - Clean-pool digit recall: 97.80%
-
