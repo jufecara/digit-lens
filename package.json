@@ -1,9 +1,9 @@
 {
   "name": "digit-lens",
-  "version": "0.0.0-spike",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Spike for browser-first Sudoku board extraction and OCR.",
+  "description": "Dataset preparation workspace for browser-first Sudoku board recognition.",
   "scripts": {
     "build": "vite build",
     "dataset:augment": "node scripts/augment-images.js",
@@ -12,12 +12,9 @@
     "dataset:download": "node scripts/download-datasets.js",
     "dataset:organize": "node scripts/organize-images.js",
     "dataset:split": "node scripts/create-splits.js",
-    "typecheck": "tsc --noEmit",
-    "spike": "npm run spike:inhouse",
-    "spike:inhouse": "node scripts/run-spike-inhouse-ocr.mjs"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@techstark/opencv-js": "^5.0.0-release.1",
     "@types/node": "^26.1.0",
     "jimp": "^1.6.1",
     "typescript": "^6.0.3",

@@ -49,4 +49,4 @@
 - The library generates the matrix, diagnostics, and validation results.
 - No permanent storage is required at the library level.
 - Output should be structured as JSON-like data that is easy to consume programmatically.
-- The curated dataset under `/data` is a local evaluation and future-training asset, not part of the current spike runtime by default.
+- The curated dataset under `/data` is the active local evaluation and future-training asset for this project.

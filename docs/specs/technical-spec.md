@@ -1,6 +1,6 @@
 # Technical Spec
 
-[Specs Index](./README.md) | [Requirements](./requirements.md) | [Benchmark Record](./benchmark-record.md)
+[Specs Index](./README.md) | [Requirements](./requirements.md) | [Lessons Learned](../lessons-learned.md)
 
 ## Table of Contents
 
@@ -62,7 +62,7 @@ type DigitLensResult = {
 };
 ```
 
-This shape is illustrative and can evolve during the spike phase.
+This shape is illustrative and can evolve during implementation.
 
 ## Testing Strategy
 
@@ -73,18 +73,16 @@ This shape is illustrative and can evolve during the spike phase.
 
 ## Current OCR Direction
 
-- The active OCR direction is the in-house classifier path documented in [Benchmark Record](./benchmark-record.md).
-- ONNX and ensemble experiments are preserved as benchmark evidence, but they are not the current implementation choice.
-- The current improvement target is preprocessing and digit isolation on degraded inputs rather than replacing the in-house classifier again.
+- Earlier OCR exploration is archived in [Lessons Learned](../lessons-learned.md).
+- The project should not treat any removed prototype script as active runtime.
+- Future OCR work should start from a product-grade normalization and validation pipeline, not from the removed prototype runners.
 
 ## Dataset Usage Plan
 
-- The curated dataset under `/data` is prepared for the next stage, not the current spike runtime.
-- The current spike still consumes `/spikes/samples` and fixture matrices directly.
-- The next-stage dataset consumer should read `/data/metadata/dataset_index.json` and active split membership from `/data/splits`.
-- Default next-stage usage should start with `usage === "active"` and non-augmented boards only.
+- The curated dataset under `/data` is the active project asset.
+- Dataset consumers should read `/data/metadata/dataset_index.json` and active split membership from `/data/splits`.
+- Default usage should start with `usage === "active"` and non-augmented boards only.
 - Deferred filled or handwritten-candidate boards should remain excluded by default until explicitly reintroduced.
-- See [Dataset Next Stage](./dataset-next-stage.md) for the operational rules.
 
 ## Near-Term Improvement Targets
 
@@ -92,7 +90,7 @@ This shape is illustrative and can evolve during the spike phase.
 - Improve preprocessing for threshold-heavy inputs before changing the classifier family again
 - Improve digit isolation for color-heavy and blue-grid boards
 - Add diagnostics that better distinguish low-quality scans from valid mostly-blank Sudoku boards
-- Keep benchmark comparison against the current in-house record as the acceptance gate for future OCR changes
+- Define new acceptance benchmarks in product-facing test fixtures rather than rebuilding the removed prototype harness
 
 ## Fallback Strategy
 

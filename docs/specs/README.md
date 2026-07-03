@@ -9,10 +9,9 @@ This directory contains the browsable SDD spec set derived from the completed pr
 3. [User Stories](./user-stories.md)
 4. [Acceptance Criteria](./acceptance-criteria.md)
 5. [Technical Spec](./technical-spec.md)
-6. [Dataset Next Stage](./dataset-next-stage.md)
-7. [Benchmark Record](./benchmark-record.md)
-8. [Delivery Plan](./delivery-plan.md)
-9. [Source Intake](../sdd-intake-template.md)
+6. [Delivery Plan](./delivery-plan.md)
+7. [Source Intake](../sdd-intake-template.md)
+8. [Lessons Learned](../lessons-learned.md)
 
 ## Reading Order
 
@@ -20,9 +19,8 @@ This directory contains the browsable SDD spec set derived from the completed pr
 2. Continue with [Requirements](./requirements.md) for functional and non-functional expectations.
 3. Use [User Stories](./user-stories.md) and [Acceptance Criteria](./acceptance-criteria.md) for implementation-facing behavior.
 4. Use [Technical Spec](./technical-spec.md) for architecture and tooling direction.
-5. Use [Dataset Next Stage](./dataset-next-stage.md) for the planned consumer path for the curated dataset.
-6. Use [Benchmark Record](./benchmark-record.md) for spike evidence and technical decisions.
-7. Use [Delivery Plan](./delivery-plan.md) for execution order and governance.
+5. Use [Delivery Plan](./delivery-plan.md) for execution order and governance.
+6. Use [Lessons Learned](../lessons-learned.md) for archived prototype evidence and reconstruction notes.
 
 ## Notes
 

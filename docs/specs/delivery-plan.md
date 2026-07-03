@@ -1,6 +1,6 @@
 # Delivery Plan
 
-[Specs Index](./README.md) | [Technical Spec](./technical-spec.md) | [Benchmark Record](./benchmark-record.md)
+[Specs Index](./README.md) | [Technical Spec](./technical-spec.md) | [Lessons Learned](../lessons-learned.md)
 
 ## Table of Contents
 
@@ -10,13 +10,13 @@
 4. [Decision Records](#decision-records)
 5. [Approval Model](#approval-model)
 6. [Spec Governance](#spec-governance)
-7. [Spike Exit](#spike-exit)
+7. [Exploration Closeout](#exploration-closeout)
 
 ## Working Model
 
 Preferred sequence:
 
-`spec -> spike -> review -> approval -> build -> verify`
+`spec -> explore -> review -> approval -> build -> verify`
 
 ## Immediate Outputs
 
@@ -27,8 +27,8 @@ The initial spec set consists of:
 - `user-stories.md`
 - `acceptance-criteria.md`
 - `technical-spec.md`
-- `benchmark-record.md`
 - `delivery-plan.md`
+- `../lessons-learned.md`
 
 ## Execution Phases
 
@@ -36,7 +36,7 @@ The initial spec set consists of:
 
 - Finalize product intent, scope, requirements, and risks
 
-### Phase 2: Spike
+### Phase 2: Explore
 
 - Validate OCR and image-processing feasibility
 - Confirm whether the suggested stack is adequate
@@ -61,15 +61,15 @@ The initial spec set consists of:
 
 ## Decision Records
 
-- Benchmark outcomes that change the recommended technical direction must be recorded in `benchmark-record.md`
+- Benchmark outcomes that change the recommended technical direction must be recorded in `../lessons-learned.md`
 - Rejected approaches should remain documented when they materially influenced the chosen implementation path
-- Spike notes under `/spikes/notes` are the detailed evidence, while `/docs/specs` captures the durable project decision
+- Prototype artifacts should be archived into durable documentation rather than left as active runtime
 
 ## Approval Model
 
 - The user is the project owner
 - The user reviews and approves specs
-- Core features should not proceed past the spike/build boundary without approval
+- Core features should not proceed past the exploration/build boundary without approval
 
 ## Spec Governance
 
@@ -79,20 +79,22 @@ The initial spec set consists of:
 - Assumptions and open questions should be tracked inside relevant sections
 - Durable benchmark decisions should be reflected in both the specs and the intake source when they change the recommended direction
 
-## Spike Exit
+## Exploration Closeout
 
-The spike should be treated as complete when the following are true:
+Exploration should be treated as complete when the following are true:
 
 - the in-house OCR direction is explicitly retained or rejected based on benchmark evidence
-- the benchmark record is updated with the final spike conclusion
-- the project has a documented handoff into the next stage without silently changing the active spike runtime
+- the lessons-learned archive is updated with the final conclusion
+- the project has a documented handoff into the next stage without leaving prototype runtime in the active surface
 
-The current project state satisfies that exit model as follows:
+The current project state satisfies that closeout model as follows:
 
-- the in-house OCR path is retained in [Benchmark Record](./benchmark-record.md)
-- the prepared dataset under `/data` is documented as next-stage material rather than active spike input
-- augmentation is documented as a second-stage option, not part of the default spike baseline
+- the prototype runtime has been removed from the active repository surface
+- the archived OCR findings are retained in [Lessons Learned](../lessons-learned.md)
+- the prepared dataset under `/data` remains the active project asset
+- augmentation remains documented as a second-stage option, not part of the default baseline
 
-Immediate post-spike next step:
+Immediate next step:
 
-- build a dedicated dataset consumer/evaluation script for `/data/metadata/dataset_index.json` and `/data/splits/*`
+- define product-grade test fixtures and acceptance checks outside the removed prototype harness
+- design the next OCR implementation as a real pipeline, not as a recovered spike script
