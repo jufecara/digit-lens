@@ -2,9 +2,137 @@
 
 Dataset-preparation workspace for browser-first Sudoku board recognition.
 
+[![CI](https://github.com/jufecara/digit-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/jufecara/digit-lens/actions/workflows/ci.yml)
+[![npm version](https://badge.fury.io/js/digit-lens.svg)](https://www.npmjs.com/package/digit-lens)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![codecov](https://codecov.io/gh/jufecara/digit-lens/branch/main/graph/badge.svg)](https://codecov.io/gh/jufecara/digit-lens)
+
 ## Current status
 
 The OCR prototype and benchmark scripts used during the exploration phase are archived as documentation only. They are not part of the active project runtime anymore.
+
+The active runtime is the browser-first library under `/src`. Library builds are emitted to `/dist`, and the build now clears stale output files before writing new artifacts so generated bundles stay deterministic between runs.
+
+The project now follows a fixed phase model in [docs/specs/phases.md](./docs/specs/phases.md) instead of open-ended step numbering.
+
+[docs/specs/phases.md](./docs/specs/phases.md) is the source of truth for the active phase, its current status, and its exit criteria. Chat updates should match that document.
+
+## Code Quality
+
+This project uses ESLint and Prettier to maintain code quality and consistent formatting.
+
+### Linting and Formatting
+
+```bash
+# Run ESLint
+npm run lint
+
+# Fix ESLint issues automatically
+npm run lint:fix
+
+# Format code with Prettier
+npm run format
+
+# Check code formatting
+npm run format:check
+```
+
+### Pre-commit Hooks
+
+The project uses husky and lint-staged to automatically lint and format staged files before commits. This ensures all committed code follows the project's style standards.
+
+### CI/CD
+
+Both CI and release workflows run linting and formatting checks to maintain code quality across all changes.
+
+## Runtime setup
+
+The repository now includes a project-level [.nvmrc](./.nvmrc) pinned to the expected Node.js version.
+
+Before running project commands, use:
+
+```bash
+nvm use
+```
+
+If you do not have that version installed yet, run:
+
+```bash
+nvm install
+```
+
+## Fixed phases
+
+1. `Phase 1: Runtime and test surface`
+   Status: complete
+2. `Phase 2: Browser demo`
+   Status: complete
+3. `Phase 3: Geometry baseline`
+   Status: active
+4. `Phase 4: OCR baseline`
+   Status: planned
+5. `Phase 5: Robustness and release readiness`
+   Status: planned
+
+## Runtime package
+
+The library entrypoint is `scanSudoku`, with `validateStructuralSudoku` and `validateSudokuSolvability` exported as validation helpers. The package build now emits:
+
+- ESM runtime: `/dist/digit-lens.js`
+- CommonJS runtime: `/dist/digit-lens.umd.cjs`
+- Type declarations: `/dist/index.d.ts`
+
+Typical usage:
+
+```ts
+import { scanSudoku } from 'digit-lens';
+```
+
+Runtime verification commands:
+
+- `npm run test:contract`: API-contract and validation-helper checks only
+- `npm run test:acceptance:smoke`: smoke-tier fixture checks plus manifest validation
+- `npm run test:acceptance:core`: core-tier fixture checks plus manifest validation
+- `npm test`: same blocking suite as the default acceptance command
+- `npm run test:acceptance`: blocking `smoke` and `core` acceptance tiers
+- `npm run test:acceptance:hard`: opt-in `hard` tier monitoring for reviewed difficult fixtures
+- `npm run test:acceptance:all`: blocking tiers plus the opt-in hard tier in one run
+
+## Browser demo
+
+The repository now includes a browser example app under `/demo`. It loads the library directly in the browser, opens the camera, captures one frame, and renders:
+
+- recognized `9x9` matrix
+- runtime status
+- diagnostics warnings and issues
+- validation output
+- raw JSON response
+
+### Live Demo
+
+A live version of the demo is available at: https://jufecara.github.io/digit-lens/
+
+### Local Development
+
+Run it with:
+
+```bash
+nvm use
+npm run demo
+```
+
+Build it with:
+
+```bash
+nvm use
+npm run demo:build
+```
+
+If `npm` is not on your shell `PATH`, the equivalent direct command is:
+
+```bash
+node node_modules/vite/bin/vite.js --config vite.demo.config.ts
+```
 
 Use [docs/lessons-learned.md](./docs/lessons-learned.md) for:
 
@@ -31,6 +159,7 @@ If a public source is unavailable or its direct download link has changed, the s
 Run the dataset setup with:
 
 ```bash
+nvm use
 npm run dataset:download
 npm run dataset:organize
 npm run dataset:split
@@ -39,12 +168,14 @@ npm run dataset:split
 Or run the default active flow:
 
 ```bash
+nvm use
 npm run dataset:build
 ```
 
 Augmentation is kept as a second-stage dataset expansion pass:
 
 ```bash
+nvm use
 npm run dataset:augment
 npm run dataset:build:stage2
 ```

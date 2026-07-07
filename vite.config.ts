@@ -1,11 +1,12 @@
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   build: {
+    emptyOutDir: true,
     lib: {
-      entry: "src/index.ts",
-      name: "DigitLens",
-      fileName: "digit-lens"
-    }
-  }
+      entry: 'src/index.ts',
+      name: 'DigitLens',
+      fileName: 'digit-lens',
+    },
+  },
 });

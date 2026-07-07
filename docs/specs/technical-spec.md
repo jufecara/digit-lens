@@ -1,13 +1,13 @@
 # Technical Spec
 
-[Specs Index](./README.md) | [Requirements](./requirements.md) | [Lessons Learned](../lessons-learned.md)
+[Specs Index](./README.md) | [Pipeline Modules](./pipeline-modules.md) | [Lessons Learned](../lessons-learned.md)
 
 ## Table of Contents
 
 1. [Architecture Direction](#architecture-direction)
 2. [Suggested Stack](#suggested-stack)
-3. [Core Processing Pipeline](#core-processing-pipeline)
-4. [Proposed Output Shape](#proposed-output-shape)
+3. [Runtime Relationship](#runtime-relationship)
+4. [Core Processing Pipeline](#core-processing-pipeline)
 5. [Testing Strategy](#testing-strategy)
 6. [Current OCR Direction](#current-ocr-direction)
 7. [Dataset Usage Plan](#dataset-usage-plan)
@@ -28,8 +28,16 @@ This is the current recommendation, not a permanent commitment.
 - TypeScript
 - Vite library mode for browser-oriented library builds
 - ESM-first package output with Node-compatible package exports
-- OpenCV.js for board detection, preprocessing, and perspective correction
+- Jimp plus lightweight in-house geometry heuristics for the first runtime slice
 - In-house digit recognition for printed Sudoku digits
+
+## Runtime Relationship
+
+- The public runtime behavior is defined in [Runtime Contract](./runtime-contract.md).
+- The concrete stage decomposition is defined in [Pipeline Modules](./pipeline-modules.md).
+- This document does not redefine public statuses, matrix rules, or diagnostics semantics.
+- This document focuses on implementation direction and architecture choices needed to satisfy that contract.
+- The current implementation slice prioritizes a dependency-light normalization and validation path before reintroducing heavier CV tooling.
 
 ## Core Processing Pipeline
 
@@ -43,26 +51,6 @@ This is the current recommendation, not a permanent commitment.
 8. Run structural validation
 9. Run solvability check
 10. Return structured output
-
-## Proposed Output Shape
-
-```ts
-type DigitLensResult = {
-  status: "ok" | "partial" | "invalid-input";
-  matrix: number[][];
-  diagnostics: {
-    warnings: string[];
-    issues: string[];
-  };
-  validation: {
-    isStructurallyValid: boolean;
-    isSolvable: boolean;
-    messages: string[];
-  };
-};
-```
-
-This shape is illustrative and can evolve during implementation.
 
 ## Testing Strategy
 

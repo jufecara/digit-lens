@@ -1,6 +1,6 @@
 # Acceptance Criteria
 
-[Specs Index](./README.md) | [User Stories](./user-stories.md) | [Technical Spec](./technical-spec.md)
+[Specs Index](./README.md) | [User Stories](./user-stories.md) | [Acceptance Suite](./acceptance-suite.md)
 
 ## Table of Contents
 
@@ -8,6 +8,7 @@
 2. [Gherkin Criteria](#gherkin-criteria)
 3. [Definition of Done](#definition-of-done)
 4. [Traceability Note](#traceability-note)
+5. [Acceptance Suite Link](#acceptance-suite-link)
 
 ## Checklist Criteria
 
@@ -72,3 +73,12 @@ A feature is done when it is implemented, tested, documented, and produces deter
 ## Traceability Note
 
 Important requirements should map to tests. Full one-to-one traceability is not required for every minor statement, but core behaviors must remain test-backed.
+
+## Acceptance Suite Link
+
+The permanent regression structure for these criteria is defined in [Acceptance Suite](./acceptance-suite.md).
+
+Implementation acceptance should be evaluated against reviewed fixtures under:
+
+- `/tests/fixtures/acceptance-suite.json`
+- `/tests/fixtures/images/`

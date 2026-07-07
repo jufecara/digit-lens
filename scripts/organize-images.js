@@ -1,4 +1,4 @@
-import path from "node:path";
+import path from 'node:path';
 import {
   boardsDir,
   classifyBoardUsage,
@@ -15,12 +15,12 @@ import {
   resetDirectoryContents,
   shouldIncludeBoardImage,
   walkFiles,
-  writeMetadata
-} from "./dataset-utils.js";
+  writeMetadata,
+} from './dataset-utils.js';
 
 await ensureDatasetLayout();
-await resetDirectoryContents(path.join(boardsDir, "real"));
-await resetDirectoryContents(path.join(boardsDir, "clean"));
+await resetDirectoryContents(path.join(boardsDir, 'real'));
+await resetDirectoryContents(path.join(boardsDir, 'clean'));
 await resetDirectoryContents(handwrittenCandidatesDir);
 const rawFiles = await walkFiles(rawDir);
 const byHash = new Map();
@@ -43,7 +43,7 @@ for (const filePath of rawFiles) {
   const { sourceDataset, category } = classifySource(filePath);
   const usageInfo = await classifyBoardUsage(filePath);
   const imageId = imageIdForHash(sourceDataset, fileSha);
-  const extension = path.extname(filePath).toLowerCase() || ".jpg";
+  const extension = path.extname(filePath).toLowerCase() || '.jpg';
   let size;
   try {
     size = await imageSize(filePath);
@@ -58,12 +58,12 @@ for (const filePath of rawFiles) {
   }
 
   const processedPath =
-    usageInfo.usage === "deferred"
+    usageInfo.usage === 'deferred'
       ? path.join(handwrittenCandidatesDir, `${imageId}${extension}`)
       : path.join(boardsDir, category, `${imageId}${extension}`);
   await linkOrCopy(filePath, processedPath);
 
-  if (usageInfo.usage === "deferred") {
+  if (usageInfo.usage === 'deferred') {
     deferredFilledCandidates += 1;
   }
 
@@ -81,7 +81,7 @@ for (const filePath of rawFiles) {
     split: null,
     usage: usageInfo.usage,
     boardFillType: usageInfo.boardFillType,
-    deferredReason: usageInfo.deferredReason
+    deferredReason: usageInfo.deferredReason,
   });
 }
 

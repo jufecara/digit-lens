@@ -1,6 +1,6 @@
 # Delivery Plan
 
-[Specs Index](./README.md) | [Technical Spec](./technical-spec.md) | [Lessons Learned](../lessons-learned.md)
+[Specs Index](./README.md) | [Phases](./phases.md) | [Technical Spec](./technical-spec.md) | [Lessons Learned](../lessons-learned.md)
 
 ## Table of Contents
 
@@ -32,32 +32,20 @@ The initial spec set consists of:
 
 ## Execution Phases
 
-### Phase 1: Spec
+The active delivery control model is the fixed five-phase roadmap in [Phases](./phases.md).
 
-- Finalize product intent, scope, requirements, and risks
+1. `Phase 1: Runtime and test surface`
+   Status: complete
+2. `Phase 2: Browser demo`
+   Status: complete
+3. `Phase 3: Geometry baseline`
+   Status: active
+4. `Phase 4: OCR baseline`
+   Status: planned
+5. `Phase 5: Robustness and release readiness`
+   Status: planned
 
-### Phase 2: Explore
-
-- Validate OCR and image-processing feasibility
-- Confirm whether the suggested stack is adequate
-
-### Phase 3: Review
-
-- Review findings against specs
-- Update assumptions and open questions
-- Record benchmark-backed decisions and rejected alternatives
-
-### Phase 4: Approval
-
-- Approve core feature direction before committed implementation
-
-### Phase 5: Build
-
-- Implement approved capabilities incrementally
-
-### Phase 6: Verify
-
-- Run tests, fixtures, and regression comparisons
+The earlier `spec -> explore -> review -> approval -> build -> verify` sequence remains useful as historical process context, but it is no longer the active phase tracker for the repository.
 
 ## Decision Records
 
@@ -94,7 +82,27 @@ The current project state satisfies that closeout model as follows:
 - the prepared dataset under `/data` remains the active project asset
 - augmentation remains documented as a second-stage option, not part of the default baseline
 
-Immediate next step:
+Current phase status:
 
-- define product-grade test fixtures and acceptance checks outside the removed prototype harness
-- design the next OCR implementation as a real pipeline, not as a recovered spike script
+- `Phase 1: Runtime and test surface` is complete
+- `Phase 2: Browser demo` is complete
+- `Phase 3: Geometry baseline` is active
+- `Phase 4: OCR baseline` is planned
+- `Phase 5: Robustness and release readiness` is planned
+
+Latest Phase 3 progress:
+
+- rotated hard-case board detection no longer falls back to the whole page when a strong internal square component is available
+- the reviewed sideways hard fixture now drops its false `cropped_board` warning while remaining non-blocking
+- rectified-board binarization now blends global and local thresholding so glare, shadows, and colored cells degrade the grid less severely
+- recovered separator positions now feed cell extraction directly, which allows selected weak-grid captures to become usable without relaxing the reviewed `core` fixture
+- board-boundary refinement now runs a bounded inner-crop search and scores candidates with the actual geometry validator instead of a coarse proxy
+- the reviewed `core` Jeffrey Wolberg fixture now advances from `unsupported-board` to `partial`, which confirms a geometry gain while also showing OCR ambiguity is still unresolved
+
+Current Phase 3 focus:
+
+- keep geometry-related documentation synchronized with acceptance expectations and runtime behavior
+- reduce geometry-driven `digit_ambiguity` on promoted real-photo fixtures before declaring Phase 3 complete
+- ensure remaining difficult reviewed cases fail for explicit, documented reasons
+
+Implementation history from the earlier incremental sequence remains preserved in git history and in previous plan revisions, but the active control model for the project is now the fixed phase roadmap in [Phases](./phases.md).

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>digit-lens demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">Phase 2 Demo</p>
+        <h1>Capture a Sudoku board in the browser</h1>
+        <p class="hero-copy">
+          This example uses the public <code>scanSudoku</code> runtime directly in the browser. Start the camera,
+          capture a board, and inspect the recognized matrix, diagnostics, and validation output.
+        </p>
+      </header>
+
+      <main class="layout">
+        <section class="panel capture-panel">
+          <div class="panel-head">
+            <h2>Capture</h2>
+            <p>Use the environment camera when available, or upload an image file as fallback.</p>
+          </div>
+
+          <div class="viewer-frame">
+            <video id="camera-feed" autoplay playsinline muted></video>
+            <img id="capture-preview" alt="Captured Sudoku preview" hidden />
+            <div id="viewer-placeholder" class="viewer-placeholder">
+              Camera preview will appear here after you start the stream.
+            </div>
+          </div>
+
+          <canvas id="capture-canvas" hidden></canvas>
+
+          <div class="controls">
+            <button id="start-camera" class="primary-button" type="button">Start Camera</button>
+            <button id="capture-frame" class="secondary-button" type="button" disabled>Capture Board</button>
+            <button id="retake-frame" class="ghost-button" type="button" disabled>Retake</button>
+            <label class="upload-button">
+              <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp,image/bmp" />
+              Upload Image
+            </label>
+          </div>
+
+          <div class="status-strip">
+            <span class="status-label">Runtime status</span>
+            <strong id="scan-status">idle</strong>
+          </div>
+
+          <p id="capture-message" class="capture-message">
+            The demo will call the public API after you capture a frame or choose a file.
+          </p>
+        </section>
+
+        <section class="panel results-panel">
+          <div class="panel-head">
+            <h2>Recognition</h2>
+            <p>Matrix, diagnostics, and validation are rendered from the actual runtime response.</p>
+          </div>
+
+          <div class="results-grid">
+            <section class="result-card board-card">
+              <h3>Recognized Board</h3>
+              <div id="board-matrix" class="board-matrix board-empty">
+                Capture a Sudoku board to render the recognized 9x9 matrix.
+              </div>
+            </section>
+
+            <section class="result-card">
+              <h3>Diagnostics</h3>
+              <dl id="diagnostics-summary" class="fact-list">
+                <div><dt>Board detected</dt><dd>n/a</dd></div>
+                <div><dt>Board usable</dt><dd>n/a</dd></div>
+                <div><dt>Rotation</dt><dd>n/a</dd></div>
+                <div><dt>Estimated cells</dt><dd>n/a</dd></div>
+              </dl>
+              <div class="chip-groups">
+                <div>
+                  <h4>Warnings</h4>
+                  <div id="warning-chips" class="chips"></div>
+                </div>
+                <div>
+                  <h4>Issues</h4>
+                  <div id="issue-chips" class="chips"></div>
+                </div>
+              </div>
+            </section>
+
+            <section class="result-card">
+              <h3>Validation</h3>
+              <dl id="validation-summary" class="fact-list">
+                <div><dt>Structural</dt><dd>n/a</dd></div>
+                <div><dt>Solvable</dt><dd>n/a</dd></div>
+              </dl>
+              <div>
+                <h4>Messages</h4>
+                <div id="validation-chips" class="chips"></div>
+              </div>
+            </section>
+
+            <section class="result-card raw-card">
+              <h3>Raw Response</h3>
+              <pre id="raw-json" class="raw-json">No scan result yet.</pre>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

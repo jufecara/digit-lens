@@ -1,5 +1,5 @@
-import path from "node:path";
-import { Jimp } from "jimp";
+import path from 'node:path';
+import { Jimp } from 'jimp';
 import {
   boardsDir,
   fileHash,
@@ -13,13 +13,15 @@ import {
   readMetadata,
   resetDirectoryContents,
   writeJpeg,
-  writeMetadata
-} from "./dataset-utils.js";
+  writeMetadata,
+} from './dataset-utils.js';
 
-const sourceEntries = (await readMetadata()).filter((entry) => entry.category === "real" || entry.category === "clean");
+const sourceEntries = (await readMetadata()).filter(
+  entry => entry.category === 'real' || entry.category === 'clean'
+);
 const existingEntries = await readMetadata();
-const baseEntries = existingEntries.filter((entry) => entry.category !== "augmented");
-const augmentedDir = path.join(boardsDir, "augmented");
+const baseEntries = existingEntries.filter(entry => entry.category !== 'augmented');
+const augmentedDir = path.join(boardsDir, 'augmented');
 
 await resetDirectoryContents(augmentedDir);
 for (const hardCase of hardCaseTypes) {
@@ -44,7 +46,7 @@ for (const entry of sourceEntries) {
     const outputPath = path.join(augmentedDir, outputFileName);
     const hardCasePath = path.join(hardCasesDir, type, outputFileName);
 
-    await writeJpeg(transformed, outputPath, type === "jpeg_compression" ? 35 : 82);
+    await writeJpeg(transformed, outputPath, type === 'jpeg_compression' ? 35 : 82);
     await linkOrCopy(outputPath, hardCasePath);
 
     const size = await imageSize(outputPath);
@@ -56,13 +58,13 @@ for (const entry of sourceEntries) {
       sourceDataset: entry.sourceDataset,
       originalPath: entry.originalPath,
       processedPath: path.relative(process.cwd(), outputPath),
-      category: "augmented",
+      category: 'augmented',
       augmentationType: type,
       width: size.width,
       height: size.height,
       fileHash: hash,
       originalImageId: entry.originalImageId,
-      split: null
+      split: null,
     });
   }
 }
@@ -73,28 +75,38 @@ logStep(`generated ${augmentedEntries.length} augmented images`);
 async function createAugmentation(image, type) {
   const clone = image.clone();
   switch (type) {
-    case "blur":
+    case 'blur':
       return clone.blur(4);
-    case "low_light":
+    case 'low_light':
       return clone.brightness(-0.45).contrast(-0.15);
-    case "glare":
+    case 'glare':
       return applyGlare(clone);
-    case "shadows":
+    case 'shadows':
       return applyShadowBand(clone);
-    case "perspective":
-      return clone.rotate(6).crop({ x: 20, y: 20, w: Math.max(1, clone.bitmap.width - 40), h: Math.max(1, clone.bitmap.height - 40) }).contain({ w: image.bitmap.width, h: image.bitmap.height });
-    case "cropped":
-      return clone.crop({
-        x: Math.floor(clone.bitmap.width * 0.06),
-        y: Math.floor(clone.bitmap.height * 0.06),
-        w: Math.max(1, Math.floor(clone.bitmap.width * 0.88)),
-        h: Math.max(1, Math.floor(clone.bitmap.height * 0.88))
-      }).contain({ w: image.bitmap.width, h: image.bitmap.height });
-    case "noisy":
+    case 'perspective':
+      return clone
+        .rotate(6)
+        .crop({
+          x: 20,
+          y: 20,
+          w: Math.max(1, clone.bitmap.width - 40),
+          h: Math.max(1, clone.bitmap.height - 40),
+        })
+        .contain({ w: image.bitmap.width, h: image.bitmap.height });
+    case 'cropped':
+      return clone
+        .crop({
+          x: Math.floor(clone.bitmap.width * 0.06),
+          y: Math.floor(clone.bitmap.height * 0.06),
+          w: Math.max(1, Math.floor(clone.bitmap.width * 0.88)),
+          h: Math.max(1, Math.floor(clone.bitmap.height * 0.88)),
+        })
+        .contain({ w: image.bitmap.width, h: image.bitmap.height });
+    case 'noisy':
       return applyNoise(clone, 18);
-    case "low_contrast":
+    case 'low_contrast':
       return clone.contrast(-0.4).brightness(0.06);
-    case "jpeg_compression":
+    case 'jpeg_compression':
       return clone;
     default:
       return clone;
