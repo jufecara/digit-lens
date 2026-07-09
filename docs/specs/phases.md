@@ -109,3 +109,10 @@ Completion criteria:
 Status:
 
 - planned
+
+**TODO for Phase 5:**
+
+- Re-enable GitHub Pages deployment workflow (.github/workflows/deploy-demo.yml)
+- Re-enable semantic-release workflow (.github/workflows/publish.yml)
+- Configure NPM_TOKEN in GitHub secrets for publishing
+- Configure GitHub Pages settings for demo deployment
