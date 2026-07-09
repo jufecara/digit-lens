@@ -57,7 +57,7 @@
     "test:acceptance:hard": "node scripts/run-acceptance.js hard",
     "test:acceptance:all": "node scripts/run-acceptance.js all",
     "typecheck": "tsc --noEmit",
-    "coverage": "c8 node scripts/run-acceptance.js all",
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=html node scripts/run-acceptance.js all",
     "lint": "eslint . --ext .ts,.js",
     "lint:fix": "eslint . --ext .ts,.js --fix",
     "format": "prettier --write \"**/*.{ts,js,json,md}\"",
