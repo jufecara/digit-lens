@@ -8,5 +8,6 @@ export default defineConfig({
       name: 'DigitLens',
       fileName: 'digit-lens',
     },
+    sourcemap: true,
   },
 });
