@@ -41,6 +41,7 @@
   },
   "scripts": {
     "build": "vite build && node node_modules/typescript/bin/tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "prepublishOnly": "npm run build",
     "demo": "vite --config vite.demo.config.ts",
     "demo:build": "vite build --config vite.demo.config.ts",
     "dataset:augment": "node scripts/augment-images.js",
