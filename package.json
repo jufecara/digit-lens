@@ -1,6 +1,6 @@
 {
   "name": "digit-lens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Dataset preparation workspace for browser-first Sudoku board recognition.",
   "author": {
@@ -87,5 +87,13 @@
     "lint-staged": "16.4.0",
     "prettier": "3.9.4",
     "semantic-release": "25.0.5"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "experimental",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
