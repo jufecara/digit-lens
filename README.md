@@ -1,21 +1,17 @@
 # digit-lens
 
-Dataset-preparation workspace for browser-first Sudoku board recognition.
+Browser-first Sudoku board recognition library with OCR capabilities.
+
+> **⚠️ Experimental Status**: This library is currently marked as experimental and published with the `@experimental` tag. OCR quality is limited and may not work reliably on all Sudoku boards. Use for research and prototyping only.
 
 [![CI](https://github.com/jufecara/digit-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/jufecara/digit-lens/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/digit-lens.svg)](https://www.npmjs.com/package/digit-lens)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/jufecara/digit-lens/branch/main/graph/badge.svg)](https://codecov.io/gh/jufecara/digit-lens)
 
-## Current status
+## Current Status
 
-The OCR prototype and benchmark scripts used during the exploration phase are archived as documentation only. They are not part of the active project runtime anymore.
-
-The active runtime is the browser-first library under `/src`. Library builds are emitted to `/dist`, and the build now clears stale output files before writing new artifacts so generated bundles stay deterministic between runs.
-
-The project now follows a fixed phase model in [docs/specs/phases.md](./docs/specs/phases.md) instead of open-ended step numbering.
-
-[docs/specs/phases.md](./docs/specs/phases.md) is the source of truth for the active phase, its current status, and its exit criteria. Chat updates should match that document.
+The active runtime is the browser-first library under `/src`. Library builds are emitted to `/dist`, and the build clears stale output files before writing new artifacts for deterministic builds.
 
 ## Code Quality
 
@@ -60,19 +56,6 @@ If you do not have that version installed yet, run:
 ```bash
 nvm install
 ```
-
-## Fixed phases
-
-1. `Phase 1: Runtime and test surface`
-   Status: complete
-2. `Phase 2: Browser demo`
-   Status: complete
-3. `Phase 3: Geometry baseline`
-   Status: active
-4. `Phase 4: OCR baseline`
-   Status: planned
-5. `Phase 5: Robustness and release readiness`
-   Status: planned
 
 ## Runtime package
 
