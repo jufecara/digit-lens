@@ -1,8 +1,8 @@
 {
   "name": "digit-lens",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
-  "description": "Dataset preparation workspace for browser-first Sudoku board recognition.",
+  "description": "Browser-first Sudoku board recognition library with OCR capabilities.",
   "author": {
     "name": "Juan Castrillon",
     "email": "jfcastrillonr@gmail.com",

@@ -6,7 +6,7 @@ Currently supported versions of digit-lens:
 
 | Version | Supported |
 | ------- | --------- |
-| 1.0.0   | ✅        |
+| 1.0.x   | ✅        |
 
 ## Reporting a Vulnerability
 
