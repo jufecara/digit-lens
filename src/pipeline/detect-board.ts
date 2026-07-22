@@ -297,13 +297,15 @@ async function refineBoardBounds(
     const baseTop = bounds.top + topEdge;
     const baseBottom = bounds.top + bottomEdge;
 
-    for (let topOffset = -2; topOffset <= 2; topOffset += 1) {
-      for (let bottomOffset = -2; bottomOffset <= 2; bottomOffset += 1) {
+    // Optimization: Reduce candidate generation by limiting offsets
+    for (let topOffset = -1; topOffset <= 1; topOffset += 1) {
+      for (let bottomOffset = -1; bottomOffset <= 1; bottomOffset += 1) {
         const adjustedTop = clamp(baseTop + topOffset, 0, height - 1);
         const adjustedBottom = clamp(baseBottom + bottomOffset, adjustedTop + 1, height - 1);
         const size = adjustedBottom - adjustedTop + 1;
 
-        for (let leftOffset = -30; leftOffset <= 30; leftOffset += 5) {
+        // Optimization: Reduce left offset range and step size
+        for (let leftOffset = -20; leftOffset <= 20; leftOffset += 10) {
           const left = clamp(bounds.left + leftOffset, 0, Math.max(0, width - size));
           const right = left + size - 1;
 
@@ -353,13 +355,14 @@ async function refineBoardBounds(
     }
   }
 
+  // Optimization: Reduce shortlist size from 12 to 8 to reduce expensive runtime scoring
   const heuristicShortlist = candidates
     .sort(
       (leftCandidate, rightCandidate) =>
         scoreRefinedBounds(rightCandidate, bounds, width, height, gray) -
         scoreRefinedBounds(leftCandidate, bounds, width, height, gray)
     )
-    .slice(0, 12);
+    .slice(0, 8);
   const shortlisted = dedupeBounds([...heuristicShortlist, ...priorityCandidates]);
 
   let best = bounds;
