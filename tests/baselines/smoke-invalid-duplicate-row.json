@@ -2,7 +2,7 @@
   "matrix": [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 1, 0, 0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -12,7 +12,7 @@
   ],
   "status": "partial",
   "diagnostics": {
-    "warnings": ["blur", "glare", "rotation_ambiguity"],
+    "warnings": ["blur", "glare", "rotation_ambiguity", "digit_ambiguity"],
     "issues": [],
     "boardDetected": true,
     "boardUsable": true,
