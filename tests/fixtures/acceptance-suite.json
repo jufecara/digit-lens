@@ -257,7 +257,7 @@
           "boardDetected": true,
           "boardUsable": false,
           "rotationDegrees": null,
-          "estimatedCellCount": 72
+          "estimatedCellCount": 64
         },
         "expectedValidation": {
           "isStructurallyValid": false,
