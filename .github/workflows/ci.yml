@@ -46,6 +46,25 @@ jobs:
       - name: Run tests
         run: npm test
       
+      - name: Run regression detection
+        run: node scripts/run-regression-detection.mjs
+      
+      - name: Upload regression report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-report
+          path: tests/regression/latest-report.json
+          retention-days: 30
+      
+      - name: Upload quality metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-metrics
+          path: tests/metrics/quality-metrics.jsonl
+          retention-days: 30
+      
       - name: Coverage
         run: npm run coverage
       

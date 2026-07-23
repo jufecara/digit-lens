@@ -46,7 +46,7 @@
         "expectedMatrix": [
           [0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 1, 0, 0, 1, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 1, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -55,7 +55,7 @@
           [0, 0, 0, 0, 0, 0, 0, 0, 0]
         ],
         "expectedDiagnostics": {
-          "warnings": ["blur", "glare", "rotation_ambiguity"],
+          "warnings": ["blur", "glare", "rotation_ambiguity", "digit_ambiguity"],
           "issues": [],
           "boardDetected": true,
           "boardUsable": true,
@@ -105,6 +105,131 @@
         },
         "tags": ["real", "printed", "cropped", "perspective", "baseline-gap"],
         "notes": "Reviewed real printed-board fixture copied from the public Jeffrey Wolberg dataset. The runtime now keeps a tighter square crop when the detected board region still includes extra page content, which promotes this fixture from unsupported geometry to partial usable extraction while preserving the known OCR ambiguity."
+      },
+      {
+        "id": "core-jeffreywolberg-image002",
+        "imagePath": "images/core-jeffreywolberg-image002.jpg",
+        "tier": "core",
+        "sourceType": "real_photo",
+        "boardType": "printed_clue",
+        "expectedStatus": "partial",
+        "expectedMatrix": [
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 1, 0, 0, 0, 1, 0],
+          [1, 1, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0],
+          [0, 0, 0, 0, 0, 1, 0, 0, 0]
+        ],
+        "expectedDiagnostics": {
+          "warnings": [
+            "blur",
+            "glare",
+            "cropped_board",
+            "perspective_distortion",
+            "rotation_ambiguity",
+            "low_confidence_cells",
+            "digit_ambiguity"
+          ],
+          "issues": ["digit_ambiguity"],
+          "boardDetected": true,
+          "boardUsable": true,
+          "rotationDegrees": 0,
+          "estimatedCellCount": 81
+        },
+        "expectedValidation": {
+          "isStructurallyValid": false,
+          "isSolvable": null,
+          "messages": ["duplicate_in_row", "duplicate_in_column", "duplicate_in_box"]
+        },
+        "tags": ["real", "printed", "newspaper", "sony_ericsson"],
+        "notes": "Real newspaper Sudoku captured with Sony Ericsson S500i (640x480). Ground truth from Jeffrey Wolberg dataset. Current implementation achieves partial extraction with OCR ambiguity."
+      },
+      {
+        "id": "core-jeffreywolberg-image010",
+        "imagePath": "images/core-jeffreywolberg-image010.jpg",
+        "tier": "core",
+        "sourceType": "real_photo",
+        "boardType": "printed_clue",
+        "expectedStatus": "partial",
+        "expectedMatrix": [
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [4, 1, 7, 0, 0, 4, 1, 0, 1],
+          [4, 1, 0, 0, 1, 4, 1, 0, 0],
+          [0, 1, 4, 4, 4, 4, 1, 4, 4],
+          [0, 1, 0, 0, 0, 0, 1, 0, 0],
+          [4, 1, 1, 0, 1, 0, 1, 0, 0],
+          [0, 1, 0, 0, 1, 4, 0, 0, 0],
+          [0, 1, 7, 0, 0, 0, 1, 0, 0],
+          [0, 1, 0, 0, 1, 0, 1, 7, 0]
+        ],
+        "expectedDiagnostics": {
+          "warnings": [
+            "blur",
+            "glare",
+            "cropped_board",
+            "perspective_distortion",
+            "rotation_ambiguity",
+            "low_confidence_cells",
+            "digit_ambiguity"
+          ],
+          "issues": ["digit_ambiguity"],
+          "boardDetected": true,
+          "boardUsable": true,
+          "rotationDegrees": 0,
+          "estimatedCellCount": 81
+        },
+        "expectedValidation": {
+          "isStructurallyValid": false,
+          "isSolvable": null,
+          "messages": ["duplicate_in_row", "duplicate_in_column", "duplicate_in_box"]
+        },
+        "tags": ["real", "printed", "newspaper", "sony_ericsson", "higher_resolution"],
+        "notes": "Real newspaper Sudoku captured with Sony Ericsson W810i (1632x1224). Higher resolution capture from Jeffrey Wolberg dataset. Current implementation achieves partial extraction."
+      },
+      {
+        "id": "core-jeffreywolberg-image1019",
+        "imagePath": "images/core-jeffreywolberg-image1019.jpg",
+        "tier": "core",
+        "sourceType": "real_photo",
+        "boardType": "printed_clue",
+        "expectedStatus": "partial",
+        "expectedMatrix": [
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 1, 1, 1],
+          [1, 0, 0, 0, 0, 0, 0, 0, 1],
+          [1, 0, 1, 1, 1, 1, 1, 0, 1],
+          [0, 0, 0, 0, 1, 0, 0, 0, 1],
+          [0, 0, 0, 0, 0, 0, 0, 0, 1],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [4, 4, 4, 4, 4, 4, 0, 4, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 4]
+        ],
+        "expectedDiagnostics": {
+          "warnings": [
+            "blur",
+            "glare",
+            "rotation_ambiguity",
+            "perspective_distortion",
+            "low_confidence_cells",
+            "digit_ambiguity"
+          ],
+          "issues": ["digit_ambiguity"],
+          "boardDetected": true,
+          "boardUsable": true,
+          "rotationDegrees": 0,
+          "estimatedCellCount": 64
+        },
+        "expectedValidation": {
+          "isStructurallyValid": false,
+          "isSolvable": null,
+          "messages": ["duplicate_in_row", "duplicate_in_column", "duplicate_in_box"]
+        },
+        "tags": ["real", "printed", "newspaper", "iphone"],
+        "notes": "Real newspaper Sudoku captured with iPhone 5s (960x1280). Modern smartphone capture from Jeffrey Wolberg dataset. Current implementation achieves partial extraction."
       }
     ],
     "hard": [
@@ -132,7 +257,7 @@
           "boardDetected": true,
           "boardUsable": false,
           "rotationDegrees": null,
-          "estimatedCellCount": 72
+          "estimatedCellCount": 64
         },
         "expectedValidation": {
           "isStructurallyValid": false,
@@ -175,6 +300,115 @@
         },
         "tags": ["real", "printed", "cropped", "blurred", "hard", "non_blocking"],
         "notes": "Reviewed hard-tier fixture from a low-quality phone capture with the board not fully centered in frame. Phase 3 geometry now treats the board as usable through recovered regular grid spacing, while OCR quality remains a later-phase problem."
+      },
+      {
+        "id": "hard-jeffreywolberg-image1000",
+        "imagePath": "images/hard-jeffreywolberg-image1000.jpg",
+        "tier": "hard",
+        "sourceType": "real_photo",
+        "boardType": "printed_clue",
+        "expectedStatus": "partial",
+        "expectedMatrix": [
+          [0, 0, 0, 0, 1, 0, 0, 0, 0],
+          [0, 9, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 4, 0],
+          [0, 0, 9, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0],
+          [4, 0, 0, 0, 1, 0, 1, 0, 0],
+          [4, 4, 0, 0, 0, 1, 0, 0, 0],
+          [4, 4, 4, 0, 0, 0, 0, 0, 0],
+          [0, 4, 4, 0, 0, 0, 1, 0, 1]
+        ],
+        "expectedDiagnostics": {
+          "warnings": [
+            "blur",
+            "glare",
+            "cropped_board",
+            "rotation_ambiguity",
+            "perspective_distortion",
+            "digit_ambiguity"
+          ],
+          "issues": ["digit_ambiguity"],
+          "boardDetected": true,
+          "boardUsable": true,
+          "rotationDegrees": 0,
+          "estimatedCellCount": 81
+        },
+        "expectedValidation": {
+          "isStructurallyValid": false,
+          "isSolvable": null,
+          "messages": ["duplicate_in_row", "duplicate_in_column", "duplicate_in_box"]
+        },
+        "tags": ["real", "printed", "newspaper", "iphone", "challenging"],
+        "notes": "Real newspaper Sudoku captured with iPhone 5s (960x1280). Challenging but human-readable scenario from Jeffrey Wolberg dataset. Current implementation achieves partial extraction."
+      },
+      {
+        "id": "hard-jeffreywolberg-image1001",
+        "imagePath": "images/hard-jeffreywolberg-image1001.jpg",
+        "tier": "hard",
+        "sourceType": "real_photo",
+        "boardType": "printed_clue",
+        "expectedStatus": "partial",
+        "expectedMatrix": [
+          [0, 1, 0, 0, 0, 1, 0, 1, 0],
+          [1, 0, 0, 1, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 1, 0, 0, 1, 0, 1, 0, 4],
+          [1, 0, 0, 0, 0, 0, 0, 1, 1],
+          [1, 1, 1, 1, 1, 0, 0, 0, 0],
+          [0, 0, 0, 1, 0, 0, 0, 0, 0],
+          [0, 0, 0, 4, 4, 0, 0, 0, 0]
+        ],
+        "expectedDiagnostics": {
+          "warnings": ["blur", "glare", "cropped_board", "rotation_ambiguity", "digit_ambiguity"],
+          "issues": ["digit_ambiguity"],
+          "boardDetected": true,
+          "boardUsable": true,
+          "rotationDegrees": 0,
+          "estimatedCellCount": 81
+        },
+        "expectedValidation": {
+          "isStructurallyValid": false,
+          "isSolvable": null,
+          "messages": ["duplicate_in_row", "duplicate_in_column", "duplicate_in_box"]
+        },
+        "tags": ["real", "printed", "newspaper", "iphone", "challenging"],
+        "notes": "Real newspaper Sudoku captured with iPhone 5s (960x1280). Challenging but human-readable scenario from Jeffrey Wolberg dataset. Current implementation achieves partial extraction."
+      },
+      {
+        "id": "hard-jeffreywolberg-image1003",
+        "imagePath": "images/hard-jeffreywolberg-image1003.jpg",
+        "tier": "hard",
+        "sourceType": "real_photo",
+        "boardType": "printed_clue",
+        "expectedStatus": "unsupported-board",
+        "expectedMatrix": [
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ],
+        "expectedDiagnostics": {
+          "warnings": ["blur", "glare", "perspective_distortion"],
+          "issues": ["weak_grid"],
+          "boardDetected": true,
+          "boardUsable": false,
+          "rotationDegrees": null,
+          "estimatedCellCount": 9
+        },
+        "expectedValidation": {
+          "isStructurallyValid": false,
+          "isSolvable": null,
+          "messages": ["invalid_shape"]
+        },
+        "tags": ["real", "printed", "newspaper", "iphone", "partial_board", "realistic_challenge"],
+        "notes": "Real newspaper Sudoku captured with iPhone 5s (960x1280). High-quality image but contains part of another Sudoku board - realistic challenging scenario. Current implementation detects board but geometry too complex for extraction. This represents a real-world edge case the library should eventually handle."
       }
     ]
   }

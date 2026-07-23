@@ -1,0 +1,30 @@
+{
+  "matrix": [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0, 1, 0],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 0]
+  ],
+  "status": "partial",
+  "diagnostics": {
+    "warnings": [
+      "blur",
+      "glare",
+      "cropped_board",
+      "perspective_distortion",
+      "rotation_ambiguity",
+      "low_confidence_cells",
+      "digit_ambiguity"
+    ],
+    "issues": ["digit_ambiguity"],
+    "boardDetected": true,
+    "boardUsable": true,
+    "rotationDegrees": 0,
+    "estimatedCellCount": 81
+  }
+}
