@@ -1,6 +1,6 @@
 {
   "name": "digit-lens",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "description": "Browser-first Sudoku board recognition library with OCR capabilities.",
   "author": {
@@ -57,6 +57,8 @@
     "test:acceptance": "node scripts/run-acceptance.js blocking",
     "test:acceptance:hard": "node scripts/run-acceptance.js hard",
     "test:acceptance:all": "node scripts/run-acceptance.js all",
+    "test:unit": "npx tsx node --test tests/unit/*.test.mjs",
+    "test:unit:watch": "npx tsx node --test --watch tests/unit/*.test.mjs",
     "typecheck": "tsc --noEmit",
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=html node scripts/run-acceptance.js all",
     "lint": "eslint . --ext .ts,.js",
@@ -87,7 +89,8 @@
     "husky": "9.1.7",
     "lint-staged": "16.4.0",
     "prettier": "3.9.4",
-    "semantic-release": "25.0.5"
+    "semantic-release": "25.0.5",
+    "tsx": "4.23.1"
   },
   "publishConfig": {
     "access": "public",

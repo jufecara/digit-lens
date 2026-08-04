@@ -93,7 +93,7 @@ export async function detectBoard(
     normalized.stats.contrast
   );
 
-  if (confidence < 0.35) {
+  if (confidence < 0.15) {
     return {
       found: false,
       quad: [],
@@ -955,7 +955,7 @@ function computeConfidence(
   const coverageScore = Math.min(1, (widthCoverage + heightCoverage) / 1.1);
   const aspectScore = Math.max(0, 1 - aspectDelta * 2.5);
   const contrastScore = Math.min(1, contrast / 64);
-  return coverageScore * 0.45 + aspectScore * 0.4 + contrastScore * 0.15;
+  return coverageScore * 0.4 + aspectScore * 0.3 + contrastScore * 0.3;
 }
 
 function findEdgePeak(profile: Float64Array, edge: 'start' | 'end'): number | null {
