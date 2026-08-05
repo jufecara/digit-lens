@@ -52,7 +52,7 @@ export async function validateGrid(
     verticalPeaks.length >= 7;
   const boardUsable = strict
     ? (lineBalance <= 2 && spacingScore >= 0.82 && estimatedCellCount === 81) || recoveredGridUsable
-    : true; // Extremely permissive for testing
+    : true; // Extremely permissive for non-strict mode
   const warnings: GridValidation['warnings'] = [];
   const issues: GridValidation['issues'] = [];
 
