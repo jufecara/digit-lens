@@ -239,30 +239,37 @@
         "tier": "hard",
         "sourceType": "real_photo",
         "boardType": "printed_clue",
-        "expectedStatus": "unsupported-board",
+        "expectedStatus": "partial",
         "expectedMatrix": [
+          [0, 6, 0, 0, 0, 0, 0, 1, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0]
+          [0, 0, 0, 0, 0, 1, 0, 0, 0],
+          [6, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 1, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 6, 1, 0],
+          [0, 0, 0, 0, 7, 0, 0, 0, 1],
+          [7, 4, 0, 0, 0, 0, 6, 0, 0]
         ],
         "expectedDiagnostics": {
-          "warnings": ["blur", "glare", "perspective_distortion"],
-          "issues": ["weak_grid"],
+          "warnings": [
+            "blur",
+            "glare",
+            "rotation_ambiguity",
+            "perspective_distortion",
+            "low_confidence_cells",
+            "digit_ambiguity"
+          ],
+          "issues": ["digit_ambiguity"],
           "boardDetected": true,
-          "boardUsable": false,
-          "rotationDegrees": null,
+          "boardUsable": true,
+          "rotationDegrees": 0,
           "estimatedCellCount": 64
         },
         "expectedValidation": {
           "isStructurallyValid": false,
           "isSolvable": null,
-          "messages": ["invalid_shape"]
+          "messages": ["duplicate_in_column", "duplicate_in_box"]
         },
         "tags": ["real", "printed", "rotated", "hard", "non_blocking"],
         "notes": "Reviewed hard-tier fixture copied from the public Jeffrey Wolberg dataset. The runtime now isolates the sideways board more tightly from the surrounding page content and recovers stronger partial regular cell-lattice evidence, but the geometry is still too weak for usable extraction so it remains a non-blocking hard case."
@@ -382,30 +389,37 @@
         "tier": "hard",
         "sourceType": "real_photo",
         "boardType": "printed_clue",
-        "expectedStatus": "unsupported-board",
+        "expectedStatus": "partial",
         "expectedMatrix": [
+          [0, 0, 0, 0, 1, 0, 1, 0, 7],
           [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 4, 0, 1, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 1],
+          [0, 0, 0, 0, 0, 1, 0, 0, 0],
+          [0, 0, 0, 4, 0, 0, 0, 0, 1],
           [0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0]
         ],
         "expectedDiagnostics": {
-          "warnings": ["blur", "glare", "perspective_distortion"],
-          "issues": ["weak_grid"],
+          "warnings": [
+            "blur",
+            "glare",
+            "rotation_ambiguity",
+            "perspective_distortion",
+            "low_confidence_cells",
+            "digit_ambiguity"
+          ],
+          "issues": ["digit_ambiguity"],
           "boardDetected": true,
-          "boardUsable": false,
-          "rotationDegrees": null,
+          "boardUsable": true,
+          "rotationDegrees": 0,
           "estimatedCellCount": 9
         },
         "expectedValidation": {
           "isStructurallyValid": false,
           "isSolvable": null,
-          "messages": ["invalid_shape"]
+          "messages": ["duplicate_in_row", "duplicate_in_column", "duplicate_in_box"]
         },
         "tags": ["real", "printed", "newspaper", "iphone", "partial_board", "realistic_challenge"],
         "notes": "Real newspaper Sudoku captured with iPhone 5s (960x1280). High-quality image but contains part of another Sudoku board - realistic challenging scenario. Current implementation detects board but geometry too complex for extraction. This represents a real-world edge case the library should eventually handle."
