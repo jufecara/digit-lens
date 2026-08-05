@@ -10,7 +10,7 @@
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
   ],
-  "status": "unsupported-board",
+  "status": "partial",
   "diagnostics": {
     "warnings": ["blur", "glare", "perspective_distortion"],
     "issues": ["weak_grid"],

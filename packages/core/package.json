@@ -55,7 +55,7 @@
     "test:acceptance": "node ../scripts/run-acceptance.js blocking",
     "test:acceptance:hard": "node ../scripts/run-acceptance.js hard",
     "test:acceptance:all": "node ../scripts/run-acceptance.js all",
-    "test:unit": "npx tsx node --test tests/unit/*.test.mjs",
+    "test:unit": "node --test tests/unit/*.test.mjs",
     "test:unit:watch": "npx tsx node --test --watch tests/unit/*.test.mjs",
     "typecheck": "tsc --noEmit",
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=html node ../scripts/run-acceptance.js all"
