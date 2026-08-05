@@ -29,11 +29,11 @@ jobs:
         run: npm run build
       
       - name: Run acceptance tests with metrics
-        run: node scripts/run-acceptance.js blocking
+        run: node packages/scripts/run-acceptance.js blocking
       
       - name: Generate quality report
         run: node -e "
-          import('./tests/helpers/quality-metrics.mjs').then(async ({ generateQualityReport }) => {
+          import('./packages/core/tests/helpers/quality-metrics.mjs').then(async ({ generateQualityReport }) => {
             const report = await generateQualityReport();
             console.log(JSON.stringify(report, null, 2));
             process.exit(report.summary.withRegressions > 0 ? 1 : 0);
@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: quality-metrics-\${{ github.run_number }}
-          path: tests/metrics/quality-metrics.jsonl
+          path: packages/core/tests/metrics/quality-metrics.jsonl
           retention-days: 90
       
       - name: Comment PR with quality metrics
@@ -55,7 +55,7 @@ jobs:
           script: |
             const fs = require('fs');
             try {
-              const metricsPath = 'tests/metrics/quality-metrics.jsonl';
+              const metricsPath = 'packages/core/tests/metrics/quality-metrics.jsonl';
               if (fs.existsSync(metricsPath)) {
                 const content = fs.readFileSync(metricsPath, 'utf8');
                 const lines = content.trim().split('\n');

@@ -1,4 +1,10 @@
 import { spawn } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const digitLensDir = join(__dirname, '../core');
 
 const tier = process.argv[2] ?? 'blocking';
 
@@ -31,19 +37,34 @@ if (!selectedFiles) {
   process.exit(1);
 }
 
-await runNode(['node_modules/vite/bin/vite.js', 'build']);
-await runNode([
-  'node_modules/typescript/bin/tsc',
-  '-p',
-  'tsconfig.build.json',
-  '--emitDeclarationOnly',
-]);
-await runNode(['--test', ...selectedFiles]);
+await runCommand('npm', ['run', 'build'], { cwd: digitLensDir });
+await runNode(['--test', ...selectedFiles.map(f => join(digitLensDir, f))], { cwd: digitLensDir });
 
-function runNode(args) {
+function runCommand(command, args, options = {}) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, {
+      cwd: options.cwd || process.cwd(),
+      env: process.env,
+      stdio: 'inherit',
+      shell: true,
+    });
+
+    child.on('error', reject);
+    child.on('exit', code => {
+      if (code === 0) {
+        resolve();
+        return;
+      }
+
+      reject(new Error(`Command failed: ${command} ${args.join(' ')}`));
+    });
+  });
+}
+
+function runNode(args, options = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, args, {
-      cwd: process.cwd(),
+      cwd: options.cwd || process.cwd(),
       env: process.env,
       stdio: 'inherit',
     });

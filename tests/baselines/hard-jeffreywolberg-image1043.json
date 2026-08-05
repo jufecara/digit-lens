@@ -1,22 +1,29 @@
 {
   "matrix": [
+    [0, 6, 0, 0, 0, 0, 0, 1, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 1, 0, 0, 0],
+    [6, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 6, 1, 0],
+    [0, 0, 0, 0, 7, 0, 0, 0, 1],
+    [7, 4, 0, 0, 0, 0, 6, 0, 0]
   ],
-  "status": "unsupported-board",
+  "status": "partial",
   "diagnostics": {
-    "warnings": ["blur", "glare", "perspective_distortion"],
-    "issues": ["weak_grid"],
+    "warnings": [
+      "blur",
+      "glare",
+      "rotation_ambiguity",
+      "perspective_distortion",
+      "low_confidence_cells",
+      "digit_ambiguity"
+    ],
+    "issues": ["digit_ambiguity"],
     "boardDetected": true,
-    "boardUsable": false,
-    "rotationDegrees": null,
-    "estimatedCellCount": 72
+    "boardUsable": true,
+    "rotationDegrees": 0,
+    "estimatedCellCount": 64
   }
 }

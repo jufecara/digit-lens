@@ -1,0 +1,21 @@
+{
+  "name": "@digit-lens/demo",
+  "version": "2.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Demo application for digit-lens library",
+  "scripts": {
+    "demo": "vite --config vite.demo.config.ts",
+    "demo:build": "vite build --config vite.demo.config.ts"
+  },
+  "dependencies": {
+    "@digit-lens/core": "*",
+    "vite": "^8.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

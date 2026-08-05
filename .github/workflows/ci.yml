@@ -47,14 +47,14 @@ jobs:
         run: npm test
       
       - name: Run regression detection
-        run: node scripts/run-regression-detection.mjs
+        run: node packages/scripts/run-regression-detection.mjs
       
       - name: Upload regression report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: regression-report
-          path: tests/regression/latest-report.json
+          path: packages/core/tests/regression/latest-report.json
           retention-days: 30
       
       - name: Upload quality metrics
@@ -62,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: quality-metrics
-          path: tests/metrics/quality-metrics.jsonl
+          path: packages/core/tests/metrics/quality-metrics.jsonl
           retention-days: 30
       
       - name: Coverage
@@ -72,7 +72,7 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/lcov.info
+          files: ./packages/core/coverage/lcov.info
           fail_ci_if_error: false
       
       - name: Build

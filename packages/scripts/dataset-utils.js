@@ -2,10 +2,16 @@ import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 import { Jimp } from 'jimp';
 
-export const rootDir = process.cwd();
-export const dataDir = path.join(rootDir, 'data');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const digitLensDir = join(__dirname, '../core');
+
+export const rootDir = digitLensDir;
+export const dataDir = path.join(digitLensDir, 'data');
 export const rawDir = path.join(dataDir, 'raw');
 export const processedDir = path.join(dataDir, 'processed');
 export const boardsDir = path.join(processedDir, 'boards');

@@ -1,0 +1,80 @@
+{
+  "name": "@digit-lens/core",
+  "version": "2.0.1",
+  "type": "module",
+  "description": "Browser-first Sudoku board recognition library with OCR capabilities.",
+  "author": {
+    "name": "Juan Castrillon",
+    "email": "jfcastrillonr@gmail.com",
+    "url": "https://github.com/jufecara"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jufecara/digit-lens.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jufecara/digit-lens/issues"
+  },
+  "homepage": "https://github.com/jufecara/digit-lens#readme",
+  "keywords": [
+    "sudoku",
+    "ocr",
+    "digit-recognition",
+    "computer-vision",
+    "browser",
+    "typescript"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/digit-lens.umd.cjs",
+  "module": "./dist/digit-lens.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/digit-lens.js",
+      "require": "./dist/digit-lens.umd.cjs"
+    }
+  },
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "prepublishOnly": "npm run build",
+    "dataset:augment": "node ../scripts/augment-images.js",
+    "dataset:build": "node ../scripts/build-dataset.js",
+    "dataset:build:stage2": "node ../scripts/augment-images.js && node ../scripts/create-splits.js",
+    "dataset:download": "node ../scripts/download-datasets.js",
+    "dataset:organize": "node ../scripts/organize-images.js",
+    "dataset:split": "node ../scripts/create-splits.js",
+    "test:contract": "node ../scripts/run-acceptance.js contract",
+    "test:acceptance:smoke": "node ../scripts/run-acceptance.js smoke",
+    "test:acceptance:core": "node ../scripts/run-acceptance.js core",
+    "test": "node ../scripts/run-acceptance.js blocking",
+    "test:acceptance": "node ../scripts/run-acceptance.js blocking",
+    "test:acceptance:hard": "node ../scripts/run-acceptance.js hard",
+    "test:acceptance:all": "node ../scripts/run-acceptance.js all",
+    "test:unit": "npx tsx node --test tests/unit/*.test.mjs",
+    "test:unit:watch": "npx tsx node --test --watch tests/unit/*.test.mjs",
+    "typecheck": "tsc --noEmit",
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=html node ../scripts/run-acceptance.js all"
+  },
+  "dependencies": {
+    "@types/node": "^26.1.0",
+    "jimp": "^1.6.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.2"
+  },
+  "devDependencies": {
+    "c8": "11.0.0",
+    "tsx": "4.23.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,6 +1,11 @@
 dist
 dist-demo
+packages/*/dist
+packages/*/dist-demo
 node_modules
+packages/*/node_modules
 coverage
+packages/*/coverage
 *.lock
 package-lock.json
+packages/*/package-lock.json

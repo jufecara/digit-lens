@@ -1,7 +1,12 @@
 node_modules
+packages/*/node_modules
 data/
+packages/core/data/
 coverage/
+packages/core/coverage/
 .DS_Store
 npm-debug.log*
 dist
+packages/core/dist
 dist-demo
+packages/demo/dist-demo
