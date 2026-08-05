@@ -1,6 +1,7 @@
 {
   "name": "digit-lens",
-  "version": "2.0.0",
+  "version": "2.0.1",
+  "private": true,
   "type": "module",
   "description": "Browser-first Sudoku board recognition library with OCR capabilities.",
   "author": {
@@ -25,73 +26,33 @@
     "browser",
     "typescript"
   ],
-  "sideEffects": false,
-  "files": [
-    "dist"
+  "workspaces": [
+    "packages/*"
   ],
-  "main": "./dist/digit-lens.umd.cjs",
-  "module": "./dist/digit-lens.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/digit-lens.js",
-      "require": "./dist/digit-lens.umd.cjs"
-    }
-  },
   "scripts": {
-    "build": "vite build && node node_modules/typescript/bin/tsc -p tsconfig.build.json --emitDeclarationOnly",
-    "prepublishOnly": "npm run build",
-    "demo": "vite --config vite.demo.config.ts",
-    "demo:build": "vite build --config vite.demo.config.ts",
-    "dataset:augment": "node scripts/augment-images.js",
-    "dataset:build": "node scripts/build-dataset.js",
-    "dataset:build:stage2": "node scripts/augment-images.js && node scripts/create-splits.js",
-    "dataset:download": "node scripts/download-datasets.js",
-    "dataset:organize": "node scripts/organize-images.js",
-    "dataset:split": "node scripts/create-splits.js",
-    "test:contract": "node scripts/run-acceptance.js contract",
-    "test:acceptance:smoke": "node scripts/run-acceptance.js smoke",
-    "test:acceptance:core": "node scripts/run-acceptance.js core",
-    "test": "node scripts/run-acceptance.js blocking",
-    "test:acceptance": "node scripts/run-acceptance.js blocking",
-    "test:acceptance:hard": "node scripts/run-acceptance.js hard",
-    "test:acceptance:all": "node scripts/run-acceptance.js all",
-    "typecheck": "tsc --noEmit",
-    "coverage": "c8 --reporter=lcov --reporter=text --reporter=html node scripts/run-acceptance.js all",
+    "build": "npm run build --workspace=@digit-lens/core",
+    "demo": "npm run demo --workspace=@digit-lens/demo",
+    "demo:build": "npm run demo:build --workspace=@digit-lens/demo",
+    "test": "npm run test --workspace=@digit-lens/core",
+    "test:unit": "npm run test:unit --workspace=@digit-lens/core",
+    "typecheck": "npm run typecheck --workspace=@digit-lens/core",
+    "coverage": "npm run coverage --workspace=@digit-lens/core",
     "lint": "eslint . --ext .ts,.js",
     "lint:fix": "eslint . --ext .ts,.js --fix",
     "format": "prettier --write \"**/*.{ts,js,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
     "prepare": "husky"
   },
-  "dependencies": {
-    "@types/node": "^26.1.0",
-    "jimp": "^1.6.1",
-    "typescript": "^6.0.3",
-    "vite": "^8.1.2"
-  },
   "devDependencies": {
-    "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/commit-analyzer": "13.0.1",
-    "@semantic-release/github": "12.0.9",
-    "@semantic-release/npm": "13.1.5",
-    "@semantic-release/release-notes-generator": "14.1.1",
     "@typescript-eslint/eslint-plugin": "8.63.0",
     "@typescript-eslint/parser": "8.63.0",
-    "c8": "11.0.0",
     "eslint": "10.6.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.6",
     "globals": "17.7.0",
     "husky": "9.1.7",
     "lint-staged": "16.4.0",
-    "prettier": "3.9.4",
-    "semantic-release": "25.0.5"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "prettier": "3.9.4"
   },
   "engines": {
     "node": ">=20"

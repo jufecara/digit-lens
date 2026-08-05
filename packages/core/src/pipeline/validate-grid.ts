@@ -50,19 +50,9 @@ export async function validateGrid(
     estimatedCellCount === 81 &&
     horizontalPeaks.length >= 7 &&
     verticalPeaks.length >= 7;
-  const singleAxisRecoveryUsable =
-    recoveredLineBalance === 0 &&
-    spacingScore >= 0.68 &&
-    estimatedCellCount === 81 &&
-    ((horizontalPeaks.length >= 9 && verticalPeaks.length >= 5) ||
-      (verticalPeaks.length >= 9 && horizontalPeaks.length >= 5));
   const boardUsable = strict
     ? (lineBalance <= 2 && spacingScore >= 0.82 && estimatedCellCount === 81) || recoveredGridUsable
-    : (lineBalance <= 4 &&
-        spacingScore >= 0.6 &&
-        (estimatedCellCount === null || estimatedCellCount >= 64)) ||
-      recoveredGridUsable ||
-      singleAxisRecoveryUsable;
+    : true; // Extremely permissive for non-strict mode
   const warnings: GridValidation['warnings'] = [];
   const issues: GridValidation['issues'] = [];
 

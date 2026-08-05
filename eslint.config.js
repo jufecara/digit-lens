@@ -5,7 +5,18 @@ import globals from 'globals';
 
 export default [
   {
-    ignores: ['dist', 'dist-demo', 'node_modules', '*.config.js', '*.config.ts'],
+    ignores: [
+      'dist',
+      'dist-demo',
+      'node_modules',
+      'packages/*/dist',
+      'packages/*/dist-demo',
+      'packages/*/node_modules',
+      '*.config.js',
+      '*.config.ts',
+      'coverage',
+      'packages/*/coverage',
+    ],
   },
   // TypeScript files with full type checking
   {
@@ -15,7 +26,12 @@ export default [
       sourceType: 'module',
       parser: typescriptParser,
       parserOptions: {
-        project: './tsconfig.json',
+        project: [
+          './tsconfig.json',
+          './packages/core/tsconfig.json',
+          './packages/demo/tsconfig.json',
+        ],
+        tsconfigRootDir: import.meta.dirname,
       },
       globals: {
         ...globals.node,

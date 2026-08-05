@@ -6,18 +6,24 @@ This project uses **automated semantic-release** with conventional commits.
 
 ## Setup Required
 
-### GitHub Secrets
+### GitHub Environment
 
-Add these secrets to your GitHub repository settings:
+Configure a GitHub environment named `npm-publish` with OIDC permissions for trusted publishing.
 
-- `NPM_TOKEN`: Your NPM publish token (create at https://www.npmjs.com/settings/tokens)
-- `GITHUB_TOKEN`: Automatically provided by GitHub Actions (no setup needed)
+### NPM OIDC Configuration
 
-### NPM Token Setup
-
-1. Go to https://www.npmjs.com/settings/tokens
-2. Create a new automation token
-3. Add it as a repository secret named `NPM_TOKEN`
+1. Go to https://www.npmjs.com/package/digit-lens
+2. Click on "Settings" tab
+3. Find the "Trusted Publisher" section
+4. Click "Add a trusted publisher"
+5. Select "GitHub Actions" as the CI provider
+6. Configure the OIDC trusted publishing:
+   - Owner: jufecara
+   - Repository: digit-lens
+   - Workflow: publish.yml (must match exactly, including .yml extension)
+   - Environment: npm-publish (optional but recommended)
+7. Select allowed actions: "npm publish"
+8. No `NPM_TOKEN` secret is needed in GitHub - OIDC handles authentication automatically
 
 ---
 
@@ -33,7 +39,7 @@ Add these secrets to your GitHub repository settings:
 
 ### Commit Message Format
 
-Use conventional commits:
+Use conventional commits to trigger releases:
 
 ```bash
 # Patch release (bug fixes)
@@ -44,7 +50,16 @@ git commit -m "feat: add support for custom digit recognition models"
 
 # Major release (breaking changes)
 git commit -m "break: change scanSudoku API signature"
+
+# Non-release commits (no version bump)
+git commit -m "chore: update dependencies"
+git commit -m "docs: update README"
+git commit -m "style: format code"
+git commit -m "test: add unit tests"
+git commit -m "refactor: improve code structure"
 ```
+
+**Note**: Only `feat`, `fix`, and `perf` commits trigger releases. Other commit types are ignored by semantic-release.
 
 ### Installation
 
@@ -56,11 +71,11 @@ semantic-release @semantic-release/changelog @semantic-release/commit-analyzer @
 
 ### Release Process
 
-1. Make commits with conventional commit messages
+1. Make commits with conventional commit messages (e.g., `feat:`, `fix:`, `chore:`)
 2. Push to `main` branch
 3. GitHub Actions runs tests and builds
 4. If tests pass, semantic-release creates a new release
-5. Package is published to NPM automatically
+5. Package is published to NPM automatically using OIDC trusted publishing
 
 ### Benefits
 
@@ -90,7 +105,7 @@ Runs on push to `main` branch:
 - Type checking
 - Test suite
 - Build
-- Semantic-release creates version, GitHub release, and publishes to NPM
+- Semantic-release creates version, GitHub release, and publishes to NPM using OIDC trusted publishing
 
 ### Demo Deployment Workflow (`.github/workflows/deploy-demo.yml`)
 

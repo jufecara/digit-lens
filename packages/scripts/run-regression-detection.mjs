@@ -1,5 +1,5 @@
-import { runRegressionDetection, formatRegressionSummary } from '../tests/helpers/regression-detection.mjs';
-import { loadAcceptanceSuite } from '../tests/helpers/load-acceptance-suite.mjs';
+import { runRegressionDetection, formatRegressionSummary } from '../core/tests/helpers/regression-detection.mjs';
+import { loadAcceptanceSuite, getAcceptanceSuitePath } from '../core/tests/helpers/load-acceptance-suite.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -8,12 +8,13 @@ const __dirname = path.dirname(__filename);
 
 async function main() {
   console.log('Running regression detection...\n');
-  
+
   const suite = await loadAcceptanceSuite();
-  const fixtureRoot = path.join(__dirname, '..', 'tests', 'fixtures');
-  
+  const suitePath = getAcceptanceSuitePath();
+  const fixtureRoot = path.dirname(suitePath);
+
   // Import scanSudoku from built dist
-  const distEntryUrl = path.join(__dirname, '..', 'dist', 'digit-lens.js');
+  const distEntryUrl = path.join(__dirname, '..', 'core', 'dist', 'digit-lens.js');
   const { scanSudoku } = await import(distEntryUrl);
   
   const report = await runRegressionDetection(suite, fixtureRoot, scanSudoku);

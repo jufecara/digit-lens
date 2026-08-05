@@ -1,4 +1,4 @@
-import { scanSudoku, type DigitLensResult } from '../src/index';
+import { scanSudoku, type DigitLensResult } from '@digit-lens/core';
 
 const video = getElement<HTMLVideoElement>('camera-feed');
 const preview = getElement<HTMLImageElement>('capture-preview');

@@ -1,0 +1,28 @@
+{
+  "name": "@digit-lens/scripts",
+  "version": "2.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Build and test scripts for digit-lens monorepo",
+  "scripts": {
+    "dataset:augment": "node augment-images.js",
+    "dataset:build": "node build-dataset.js",
+    "dataset:build:stage2": "node augment-images.js && node create-splits.js",
+    "dataset:download": "node download-datasets.js",
+    "dataset:organize": "node organize-images.js",
+    "dataset:split": "node create-splits.js",
+    "test:contract": "node run-acceptance.js contract",
+    "test:acceptance:smoke": "node run-acceptance.js smoke",
+    "test:acceptance:core": "node run-acceptance.js core",
+    "test": "node run-acceptance.js blocking",
+    "test:acceptance": "node run-acceptance.js blocking",
+    "test:acceptance:hard": "node run-acceptance.js hard",
+    "test:acceptance:all": "node run-acceptance.js all"
+  },
+  "dependencies": {
+    "@digit-lens/core": "*"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

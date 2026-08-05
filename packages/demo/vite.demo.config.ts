@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: 'demo',
+  root: '.',
   base: '/digit-lens/',
   build: {
-    outDir: '../dist-demo',
+    outDir: './dist-demo',
     emptyOutDir: true,
   },
 });

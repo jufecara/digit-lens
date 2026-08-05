@@ -2,8 +2,6 @@
 
 Browser-first Sudoku board recognition library with OCR capabilities.
 
-> **⚠️ Experimental Status**: This library is currently marked as experimental and published with the `@experimental` tag. OCR quality is limited and may not work reliably on all Sudoku boards. Use for research and prototyping only.
-
 [![CI](https://github.com/jufecara/digit-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/jufecara/digit-lens/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/digit-lens.svg)](https://www.npmjs.com/package/digit-lens)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

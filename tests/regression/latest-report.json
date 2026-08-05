@@ -1,13 +1,25 @@
 {
-  "timestamp": "2026-07-22T21:37:27.456Z",
+  "timestamp": "2026-08-05T12:54:35.781Z",
   "totalFixtures": 11,
   "regressions": [],
   "improvements": [],
-  "newBaselines": ["smoke-invalid-duplicate-row", "hard-jeffreywolberg-image1001"],
+  "newBaselines": [
+    "smoke-synthetic-board",
+    "smoke-invalid-duplicate-row",
+    "core-jeffreywolberg-image1073",
+    "core-jeffreywolberg-image002",
+    "core-jeffreywolberg-image010",
+    "core-jeffreywolberg-image1019",
+    "hard-jeffreywolberg-image1043",
+    "hard-bad-phone-sudoku1",
+    "hard-jeffreywolberg-image1000",
+    "hard-jeffreywolberg-image1001",
+    "hard-jeffreywolberg-image1003"
+  ],
   "summary": {
     "withRegressions": 0,
     "withImprovements": 0,
-    "needsBaseline": 2,
-    "healthy": 9
+    "needsBaseline": 11,
+    "healthy": 0
   }
 }
