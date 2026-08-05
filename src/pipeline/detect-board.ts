@@ -93,7 +93,7 @@ export async function detectBoard(
     normalized.stats.contrast
   );
 
-  if (confidence < 0.35) {
+  if (confidence < 0.15) {
     return {
       found: false,
       quad: [],
