@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-07-22T21:37:27.456Z",
+  "timestamp": "2026-08-05T00:54:11.523Z",
   "totalFixtures": 11,
   "regressions": [],
   "improvements": [],
-  "newBaselines": ["smoke-invalid-duplicate-row", "hard-jeffreywolberg-image1001"],
+  "newBaselines": [],
   "summary": {
     "withRegressions": 0,
     "withImprovements": 0,
-    "needsBaseline": 2,
-    "healthy": 9
+    "needsBaseline": 0,
+    "healthy": 11
   }
 }
