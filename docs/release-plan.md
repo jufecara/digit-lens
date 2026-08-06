@@ -2,87 +2,31 @@
 
 ## Overview
 
-This project uses **automated semantic-release** with conventional commits.
+Releases are performed manually after the CI workflow passes. The project no
+longer uses semantic-release.
 
 ## Setup Required
 
-### GitHub Environment
+### GitHub Actions
 
-Configure a GitHub environment named `npm-publish` with OIDC permissions for trusted publishing.
+The CI workflow (`.github/workflows/ci.yml`) validates pushes to `main` and
+pull requests. It does not publish packages.
 
-### NPM OIDC Configuration
+### NPM Authentication
 
-1. Go to https://www.npmjs.com/package/digit-lens
-2. Click on "Settings" tab
-3. Find the "Trusted Publisher" section
-4. Click "Add a trusted publisher"
-5. Select "GitHub Actions" as the CI provider
-6. Configure the OIDC trusted publishing:
-   - Owner: jufecara
-   - Repository: digit-lens
-   - Workflow: publish.yml (must match exactly, including .yml extension)
-   - Environment: npm-publish (optional but recommended)
-7. Select allowed actions: "npm publish"
-8. No `NPM_TOKEN` secret is needed in GitHub - OIDC handles authentication automatically
+Authenticate with npm before publishing, using `npm login` or an approved
+automation token.
 
 ---
 
-## Automated Release
-
-### How It Works
-
-- Semantic-release analyzes your commit messages
-- Automatically determines version bump (major/minor/patch)
-- Creates GitHub releases
-- Publishes to NPM
-- Generates changelog
-
-### Commit Message Format
-
-Use conventional commits to trigger releases:
-
-```bash
-# Patch release (bug fixes)
-git commit -m "fix: resolve memory leak in image processing"
-
-# Minor release (new features, backwards compatible)
-git commit -m "feat: add support for custom digit recognition models"
-
-# Major release (breaking changes)
-git commit -m "break: change scanSudoku API signature"
-
-# Non-release commits (no version bump)
-git commit -m "chore: update dependencies"
-git commit -m "docs: update README"
-git commit -m "style: format code"
-git commit -m "test: add unit tests"
-git commit -m "refactor: improve code structure"
-```
-
-**Note**: Only `feat`, `fix`, and `perf` commits trigger releases. Other commit types are ignored by semantic-release.
-
-### Installation
-
-Dependencies are already installed:
-
-```bash
-semantic-release @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/github @semantic-release/npm @semantic-release/release-notes-generator
-```
+## Manual Release
 
 ### Release Process
 
-1. Make commits with conventional commit messages (e.g., `feat:`, `fix:`, `chore:`)
-2. Push to `main` branch
-3. GitHub Actions runs tests and builds
-4. If tests pass, semantic-release creates a new release
-5. Package is published to NPM automatically using OIDC trusted publishing
-
-### Benefits
-
-- No manual version management
-- Consistent versioning based on changes
-- Automatic changelog generation
-- GitHub releases created automatically
+1. Update the version in `packages/core/package.json`.
+2. Push the change and wait for the CI workflow to pass.
+3. From the repository root, run `npm publish --workspace=@digit-lens/core`.
+4. Create the corresponding Git tag and GitHub release.
 
 ---
 
@@ -96,16 +40,6 @@ Runs on every push and PR:
 - Type checking
 - Test suite
 - Build verification
-
-### Release Workflow (`.github/workflows/publish.yml`)
-
-Runs on push to `main` branch:
-
-- Security audit (npm audit)
-- Type checking
-- Test suite
-- Build
-- Semantic-release creates version, GitHub release, and publishes to NPM using OIDC trusted publishing
 
 ### Demo Deployment Workflow (`.github/workflows/deploy-demo.yml`)
 
@@ -124,7 +58,7 @@ The project uses `.npmrc` with `ignore-scripts=true` to block dependency lifecyc
 
 ### Security Audits
 
-Both CI and release workflows run `npm audit --audit-level=high` to detect known vulnerabilities in dependencies before any release.
+The CI workflow runs `npm audit --audit-level=high` before a release.
 
 ### Additional .npmrc Protections
 
