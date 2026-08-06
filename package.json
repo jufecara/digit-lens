@@ -32,7 +32,7 @@
   "scripts": {
     "build": "npm run build --workspace=@digit-lens/core",
     "demo": "npm run demo --workspace=@digit-lens/demo",
-    "demo:build": "npm run demo:build --workspace=@digit-lens/demo",
+    "demo:build": "npm run build --workspace=@digit-lens/core && npm run demo:build --workspace=@digit-lens/demo",
     "test": "npm run test --workspace=@digit-lens/core",
     "test:unit": "npm run test:unit --workspace=@digit-lens/core",
     "typecheck": "npm run typecheck --workspace=@digit-lens/core",
