@@ -2,33 +2,33 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Lint
         run: npm run lint
-      
+
       - name: Format check
         run: npm run format:check
-      
+
       - name: Verify lockfile consistency
         run: |
           if [ -n "$(git diff package-lock.json)" ]; then
@@ -36,19 +36,19 @@ jobs:
             echo "Run 'npm install' to update the lockfile"
             exit 1
           fi
-      
+
       - name: Security audit
         run: npm audit --audit-level=high
-      
+
       - name: Type check
         run: npm run typecheck
-      
+
       - name: Run tests
         run: npm test
-      
+
       - name: Run regression detection
         run: node packages/scripts/run-regression-detection.mjs
-      
+
       - name: Upload regression report
         if: always()
         uses: actions/upload-artifact@v4
@@ -56,7 +56,7 @@ jobs:
           name: regression-report
           path: packages/core/tests/regression/latest-report.json
           retention-days: 30
-      
+
       - name: Upload quality metrics
         if: always()
         uses: actions/upload-artifact@v4
@@ -64,16 +64,16 @@ jobs:
           name: quality-metrics
           path: packages/core/tests/metrics/quality-metrics.jsonl
           retention-days: 30
-      
+
       - name: Coverage
         run: npm run coverage
-      
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./packages/core/coverage/lcov.info
           fail_ci_if_error: false
-      
+
       - name: Build
         run: npm run build
